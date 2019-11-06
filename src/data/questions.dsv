@@ -1,0 +1,25 @@
+field::copy::type
+date_submitted::::date
+name::What's your name (first last)?::text
+email::Email Address::text
+phone::Phone number?::text
+quarters::When would you be interested in living at Ithaka? Please check at least one box below.::1,2,3
+ideal_move_in::On what date would you ideally move in?::date
+earliest_move_in::What is the earliest date on which you would be able to move in?::date
+latest_move_in::What is the latest date on which you would be able to move in?::date
+ithaka_contacts::How did you receive this application?  Which current residents (if any) do you know?::text
+rooming_preference::Do you want to live in a single, double (w/ roommate) or triple, or no preference? Any other considerations?::text
+dinner_attendance::How often do you think you'd be able to attend house dinners (held 5 nights per week at 7 p.m.) and weekly house meeting (usually at dinner time)?::text
+acceptance_chance::If you are offered a spot, what's the chance (0–100%) that you would accept?::number
+why::Why do you want to live in Ithaka?::text
+needs::Do you have any non-negotiable rooming/housing needs?::text
+previous_experience::What is your previous living/housing experience?::text
+ideal_community::What’s your ideal community?::text
+story::Please imagine you have woken up in a strange, comforting room. There is a large, black dog sleeping peacefully on an armoire. One door is open, and leads to a forest; there is an ancient bookshelf and an almost indescribable brass dingbat. You suddenly remember that your aunt once told you this would happen. Please describe your subsequent actions or explain how you got into this situation in the first place.::text
+bring::What do you bring to Ithaka?:text
+get::What do you want to get out of Ithaka?::text
+smoking::Our landlord doesn’t permit smoking cigarettes in and around Ithaka.::bool
+deposit::If you are offered a spot and accept, you will be asked to put down a deposit of $700 upon acceptance (before move-in). This will count towards your third month’s rent at Ithaka.::bool
+sublet::If you are accepted for summer 2019, you cannot sublet your room for any duration of the summer. This also means that your are responsible for paying rent for your room from June 15th-Sept 15th. This applies to summer residents who are at Ithaka for the summer only as well as Ithakans who will stay beyond summer.::bool
+misc::Anything else you want to ask/share?::text
+

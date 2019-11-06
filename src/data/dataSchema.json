@@ -1,0 +1,69 @@
+[
+  { "field": "date_submitted", "guppyCopy": "s" },
+  { "field": "name", "guppyCopy": "What's your name (first last)?" },
+  { "field": "email", "guppyCopy": "Email Address" },
+  { "field": "phone", "guppyCopy": "Phone number?" },
+  {
+    "field": "quarters",
+    "guppyCopy": "When would you be interested in living at Ithaka? Please check at least one box below."
+  },
+  {
+    "field": "ideal_move_in",
+    "guppyCopy": "On what date would you ideally move in?"
+  },
+  {
+    "field": "earliest_move_in",
+    "guppyCopy": "What is the earliest date on which you would be able to move in?"
+  },
+  {
+    "field": "latest_move_in",
+    "guppyCopy": "What is the latest date on which you would be able to move in?"
+  },
+  {
+    "field": "ithaka_contacts",
+    "guppyCopy": "How did you receive this application?  Which current residents (if any) do you know?"
+  },
+  {
+    "field": "rooming_preference",
+    "guppyCopy": "Do you want to live in a single, double (w/ roommate) or triple, or no preference? Any other considerations?"
+  },
+  {
+    "field": "dinner_attendance",
+    "guppyCopy": "How often do you think you'd be able to attend house dinners (held 5 nights per week at 7 p.m.) and weekly house meeting (usually at dinner time)?"
+  },
+  {
+    "field": "acceptance_chance",
+    "guppyCopy": "If you are offered a spot, what's the chance (0–100%) that you would accept?"
+  },
+
+  { "field": "why", "guppyCopy": "Why do you want to live in Ithaka?" },
+  {
+    "field": "needs",
+    "guppyCopy": "Do you have any non-negotiable rooming/housing needs?"
+  },
+  {
+    "field": "previous_experience",
+    "guppyCopy": "What is your previous living/housing experience?"
+  },
+  { "field": "ideal_community", "guppyCopy": "What’s your ideal community?" },
+  {
+    "field": "story",
+    "guppyCopy": "Please imagine you have woken up in a strange, comforting room. There is a large, black dog sleeping peacefully on an armoire. One door is open, and leads to a forest; there is an ancient bookshelf and an almost indescribable brass dingbat. You suddenly remember that your aunt once told you this would happen. Please describe your subsequent actions or explain how you got into this situation in the first place. "
+  },
+  { "field": "bring", "guppyCopy": "What do you bring to Ithaka?" },
+
+  { "field": "get", "guppyCopy": "What do you want to get out of Ithaka? " },
+  {
+    "field": "smoking",
+    "guppyCopy": "Our landlord doesn’t permit smoking cigarettes in and around Ithaka."
+  },
+  {
+    "field": "deposit",
+    "guppyCopy": "If you are offered a spot and accept, you will be asked to put down a deposit of $700 upon acceptance (before move-in). This will count towards your third month’s rent at Ithaka."
+  },
+  {
+    "field": "sublet",
+    "guppyCopy": "If you are accepted for summer 2019, you cannot sublet your room for any duration of the summer. This also means that your are responsible for paying rent for your room from June 15th-Sept 15th. This applies to summer residents who are at Ithaka for the summer only as well as Ithakans who will stay beyond summer."
+  },
+  { "field": "misc", "guppyCopy": "Anything else you want to ask/share?" }
+]
