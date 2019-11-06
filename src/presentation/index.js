@@ -3,6 +3,8 @@ import React from "react";
 import { Deck, Slide, Heading } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
 import { useHumansData } from "./useHumansData";
+import { useCSV } from "../data/useCSV";
+import { keyBy } from "../utils";
 const theme = createTheme(
   {
     primary: "white",
@@ -54,7 +56,6 @@ export default Presentation = () => {
       <Heading>loading, bro</Heading>
     </Slide>
   );
-  humans && console.log(humans, humans[0]);
 
   return (
     <Deck transition={["zoom", "slide"]} transitionDuration={500} theme={theme}>
