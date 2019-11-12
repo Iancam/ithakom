@@ -43,8 +43,10 @@ export function usePathState(
     const old = form[id];
     return setForm({ ...form, [id]: { ...old, value } });
   };
-  const stateManager = (node, state) => {
-    form[id(node)] || setForm({ ...form, [id(node)]: { ...node, ...state } });
+  const stateManager = node => {
+    form[id(node)] || setForm({ ...form, [id(node)]: { ...node } });
+    console.log(id(node));
+
     return { set: setValue(id(node)), get: () => form[id(node)] };
   };
   return {

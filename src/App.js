@@ -18,7 +18,7 @@ function App() {
   });
   const { values, stateManager } = usePathState(5);
   const onSubmit = () => {
-    console.log("ping");
+    console.log({ values: values() });
 
     return request
       .post("http://localhost:3000/api/guppies.ts")
