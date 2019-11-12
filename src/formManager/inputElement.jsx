@@ -1,23 +1,84 @@
 import React from "react";
 
-const Input_Element = ({ node, stateManager, styles = {} }) => {
+const parse = node => {
   const { id, copy, type, parent } = node;
+  const ret = type.includes(",")
+    ? {
+        ...node,
+        type: "selectMultiple",
+        props: { options: type.split(",") }
+      }
+    : type.includes(";")
+    ? {
+        ...node,
+        type: "select",
+        props: { options: type.split(";") }
+      }
+    : node;
+  return { ...ret };
+};
+
+const Input_Element = ({ node, stateManager, styles = {} }) => {
+  const { set, get } = stateManager(node, { value: " " });
+  const { id, copy, type, parent, props } = parse(node);
   !copy && console.warn("copy undefined, defaulting to id");
+
+  const inpClass = styles.input || "br2 ba pv2 ph3 black-50 b--gray glow";
   const divClass = styles.container || "db mt3 ml3 ";
   const labelClass = styles.label || "db mb1 avenir gray fw7 measure";
-  const inpClass = styles.input || "br2 ba pv2 ph3 black-50 b--gray glow";
-  const setValue = stateManager(node, { value: " " });
+  const textAreaLength = "measure h6";
+
+  const inputMapper = {
+    text: props => {
+      return <input type={type} name={id} {...props} />;
+    },
+    long: props => {
+      const { className } = props;
+      return (
+        <textarea
+          cols={72}
+          rows={4}
+          {...props}
+          className={[textAreaLength, className].join(" ")}
+        ></textarea>
+      );
+    },
+    selectMultiple: props => {
+      const { options } = props;
+      return (
+        <div className={divClass}>
+          {options.map(option =>
+            InputElement({
+              stateManager,
+              node: { id: option, copy: option, parent: node, type: "checkbox" }
+            })
+          )}
+        </div>
+      );
+    },
+    select: props => {
+      const { options } = props;
+      return (
+        <select {...props} name={id}>
+          {options.map((option, i) => (
+            <option key={i}>{option}</option>
+          ))}
+        </select>
+      );
+    }
+  };
+  const Input = inputMapper[type] || inputMapper.text;
+
   return (
     <div className={divClass} key={id}>
-      <label htmlFor="name" className={labelClass}>
-        {copy}
-      </label>
-      <input
-        type={type}
-        onChange={e => setValue(e.target.value)}
-        className={inpClass}
-        name={id}
-      />
+      <label className={labelClass}>{copy}</label>
+      {Input({
+        className: inpClass,
+        ...props,
+        onChange: e => {
+          set(e.target.value);
+        }
+      })}
     </div>
   );
 };

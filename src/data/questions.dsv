@@ -1,7 +1,7 @@
 id::copy::type
 name::What's your name (first last)?::text
-email::Email Address::text
-phone::Phone number?::text
+email::Email Address::email
+phone::Phone number?::tel
 quarters::When would you be interested in living at Ithaka? Please check at least one box below.::1,2,3
 ideal_move_in::On what date would you ideally move in?::date
 earliest_move_in::What is the earliest date on which you would be able to move in?::date
@@ -10,13 +10,13 @@ ithaka_contacts::How did you receive this application?  Which current residents 
 rooming_preference::Do you want to live in a single, double (w/ roommate) or triple, or no preference? Any other considerations?::text
 dinner_attendance::How often do you think you'd be able to attend house dinners (held 5 nights per week at 7 p.m.) and weekly house meeting (usually at dinner time)?::text
 acceptance_chance::If you are offered a spot, what's the chance (0–100%) that you would accept?::number
-why::Why do you want to live in Ithaka?::text
 needs::Do you have any non-negotiable rooming/housing needs?::text
-previous_experience::What is your previous living/housing experience?::text
-ideal_community::What’s your ideal community?::text
-story::Please imagine you have woken up in a strange, comforting room. There is a large, black dog sleeping peacefully on an armoire. One door is open, and leads to a forest; there is an ancient bookshelf and an almost indescribable brass dingbat. You suddenly remember that your aunt once told you this would happen. Please describe your subsequent actions or explain how you got into this situation in the first place.::text
-bring::What do you bring to Ithaka?::text
-get::What do you want to get out of Ithaka?::text
+why::Why do you want to live in Ithaka?::long
+previous_experience::What is your previous living/housing experience?::long
+ideal_community::What’s your ideal community?::long
+story::Please imagine you have woken up in a strange, comforting room. There is a large, black dog sleeping peacefully on an armoire. One door is open, and leads to a forest; there is an ancient bookshelf and an almost indescribable brass dingbat. You suddenly remember that your aunt once told you this would happen. Please describe your subsequent actions or explain how you got into this situation in the first place.::long
+bring::What do you bring to Ithaka?::long
+get::What do you want to get out of Ithaka?::long
 smoking::Our landlord doesn’t permit smoking cigarettes in and around Ithaka.::checkbox
 deposit::If you are offered a spot and accept, you will be asked to put down a deposit of $700 upon acceptance (before move-in). This will count towards your third month’s rent at Ithaka.::checkbox
 sublet::If you are accepted for summer 2019, you cannot sublet your room for any duration of the summer. This also means that your are responsible for paying rent for your room from June 15th-Sept 15th. This applies to summer residents who are at Ithaka for the summer only as well as Ithakans who will stay beyond summer.::checkbox

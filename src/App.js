@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import request from "superagent";
 import Presentation from "./presentation";
 import { InputElement } from "./formManager/inputElement";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useCSV } from "./data/useCSV";
+
 import { usePathState } from "./formManager/stateManager";
 const questions = require("./data/questions.dsv");
 
@@ -14,7 +16,16 @@ function App() {
       return results.data;
     }
   });
-  const { values, stateManager } = usePathState(2);
+  const { values, stateManager } = usePathState(5);
+  const onSubmit = () => {
+    console.log("ping");
+
+    return request
+      .post("http://localhost:3000/api/guppies.ts")
+      .send(values())
+      .then(v => console.log(v))
+      .catch(err => console.log(err));
+  };
 
   return (
     <Router>
@@ -26,7 +37,7 @@ function App() {
           {formSpec &&
             formSpec.map(node => InputElement({ node, stateManager }))}
           <button
-            onClick={() => console.log(values())}
+            onClick={onSubmit}
             className="pa3 green avenir bg-black ml2 br-pill"
           >
             Submit that good good :)

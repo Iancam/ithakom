@@ -45,7 +45,7 @@ export function usePathState(
   };
   const stateManager = (node, state) => {
     form[id(node)] || setForm({ ...form, [id(node)]: { ...node, ...state } });
-    return setValue(id(node));
+    return { set: setValue(id(node)), get: () => form[id(node)] };
   };
   return {
     stateManager,
@@ -53,8 +53,6 @@ export function usePathState(
     values: () => {
       const formTree = trie();
       Object.keys(form).forEach(path => {
-        console.log(form[path].value);
-
         formTree.add(path.split("."), form[path].value);
       });
       return formTree.tree;
