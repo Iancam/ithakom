@@ -11,7 +11,8 @@
     "react-scripts": "3.2.0",
     "recompose": "^0.30.0",
     "spectacle": "^5.7.1",
-    "superagent": "^5.1.0"
+    "superagent": "^5.1.0",
+    "url-join": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

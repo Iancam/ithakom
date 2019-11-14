@@ -21,6 +21,16 @@ export const Tree = {
 export const trie = () => {
   let tree = {};
   return {
+    _recAdd: (path, value, cursor, parent) => {
+      const key = path.pop();
+      if (!path.length) {
+        parent[path] = value;
+        return;
+      }
+      if (!cursor[key]) {
+        cursor[key] = {};
+      }
+    },
     add: (inpPath, value) => {
       let path = inpPath.reverse();
       let parent = tree;
@@ -34,9 +44,8 @@ export const trie = () => {
         parent = cursor;
         cursor = cursor[key];
       }
-      if (value) {
-        parent[key] = value;
-      }
+      parent[key] = value || undefined;
+
       return cursor.value;
     },
     get: inpPath => {

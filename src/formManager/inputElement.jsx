@@ -19,7 +19,7 @@ const parse = node => {
 };
 
 const Input_Element = ({ node, stateManager, styles = {} }) => {
-  const { set, get } = stateManager(node, { value: " " });
+  const { set } = stateManager(node, { value: " " });
   const { id, copy, type, parent, props } = parse(node);
   !copy && console.warn("copy undefined, defaulting to id");
 

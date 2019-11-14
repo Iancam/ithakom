@@ -45,17 +45,15 @@ export function usePathState(
   };
   const stateManager = node => {
     form[id(node)] || setForm({ ...form, [id(node)]: { ...node } });
-    console.log(id(node));
-
     return { set: setValue(id(node)), get: () => form[id(node)] };
   };
   return {
     stateManager,
-    _state: form,
-    values: () => {
+    flatState: form,
+    state: (selector = node => node) => {
       const formTree = trie();
       Object.keys(form).forEach(path => {
-        formTree.add(path.split("."), form[path].value);
+        formTree.add(path.split("."), selector(form[path]));
       });
       return formTree.tree;
     }

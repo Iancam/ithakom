@@ -10,7 +10,10 @@ export const useHumansData = () =>
         // convert the keys to a standard key format
         Object.keys(human).reduce((agg, k) => {
           const key = schema[k] && schema[k].field;
-          agg[key] = { answer: human[k], key };
+          const emptyObject =
+            typeof human[k] === "object" &&
+            Object.values(human[k]).length === 0;
+          agg[key] = emptyObject ? undefined : human[k];
           return agg;
         }, {})
       ),
