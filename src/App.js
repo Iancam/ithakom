@@ -12,9 +12,10 @@ import {
 import { useCSV } from "./data/useCSV";
 
 import { usePathState } from "./formManager/stateManager";
-import { Review } from "./review";
+import urljoin from "url-join";
 import { Cancel } from "./cancelIcon";
 import { Confirm } from "./confirm";
+import { API_URI } from "./config";
 const questions = require("./data/questions.dsv");
 
 const Form = ({ flash, setFlash, formSpec, onSubmit, stateManager }) => {
@@ -64,7 +65,7 @@ function App(props) {
   const { state, stateManager } = usePathState(5);
   const onSubmit = () => {
     return request
-      .post("https://ithakaback.ian-cam.now.sh")
+      .post(urljoin(API_URI, "guppies.ts"))
       .send(state(n => n.value))
       .then(v => {
         return history.push("/confirm", v.body);
