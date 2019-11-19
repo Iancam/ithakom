@@ -2,7 +2,8 @@ id::copy::type
 name::What's your name (first last)?::text
 email::Email Address::email
 phone::Phone number?::tel
-quarters::When would you be interested in living at Ithaka? Please check at least one box below.::1,2,3
+picture::Share a photo of yourself!::image
+quarters:: For which quarters would you be interested in living at Ithaka? Please check at least one box below.::fall,winter,spring, summer
 ideal_move_in::On what date would you ideally move in?::date
 earliest_move_in::What is the earliest date on which you would be able to move in?::date
 latest_move_in::What is the latest date on which you would be able to move in?::date
