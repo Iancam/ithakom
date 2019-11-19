@@ -64,7 +64,7 @@ function App(props) {
   const { state, stateManager } = usePathState(5);
   const onSubmit = () => {
     return request
-      .post("http://localhost:3000/api/guppies.ts")
+      .post("https://my-mongodb-api.ian-cam.now.sh")
       .send(state(n => n.value))
       .then(v => {
         return history.push("/confirm", v.body);
