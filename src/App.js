@@ -14,6 +14,7 @@ import { useCSV } from "./data/useCSV";
 import { usePathState } from "./formManager/stateManager";
 import { Review } from "./review";
 import { Cancel } from "./cancelIcon";
+import { Confirm } from "./confirm";
 const questions = require("./data/questions.dsv");
 
 const Form = ({ flash, setFlash, formSpec, onSubmit, stateManager }) => {
@@ -49,22 +50,6 @@ const Form = ({ flash, setFlash, formSpec, onSubmit, stateManager }) => {
     </div>
   );
 };
-
-const Confirm = props => {
-  const history = useHistory();
-  console.log({ history: history.location.state, props });
-
-  return (
-    <div className="measure mt6 ml6 f3">
-      Your results have been save with the id{" "}
-      {(history.location.state && history.location.state.id) || (
-        <span className="red">(no id!! lawls)</span>
-      )}
-      . Not that this means much to you... Yet
-    </div>
-  );
-};
-
 function App(props) {
   const [flash, setFlash] = useState();
   const history = useHistory();
@@ -95,6 +80,9 @@ function App(props) {
       {/* <Route path={"/present"}>
         <Presentation />
       </Route> */}
+      <Route path="/confirm">
+        <Confirm></Confirm>
+      </Route>
       <Route path={"/apply"}>
         <Form {...{ stateManager, flash, setFlash, formSpec, onSubmit }}></Form>
       </Route>
