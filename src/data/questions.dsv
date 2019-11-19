@@ -14,7 +14,6 @@ needs::Do you have any non-negotiable rooming/housing needs?::text
 why::Why do you want to live in Ithaka?::long
 previous_experience::What is your previous living/housing experience?::long
 ideal_community::What’s your ideal community?::long
-story::Please imagine you have woken up in a strange, comforting room. There is a large, black dog sleeping peacefully on an armoire. One door is open, and leads to a forest; there is an ancient bookshelf and an almost indescribable brass dingbat. You suddenly remember that your aunt once told you this would happen. Please describe your subsequent actions or explain how you got into this situation in the first place.::long
 bring::What do you bring to Ithaka?::long
 get::What do you want to get out of Ithaka?::long
 smoking::Our landlord doesn’t permit smoking cigarettes in and around Ithaka.::checkbox

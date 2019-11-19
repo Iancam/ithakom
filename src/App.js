@@ -92,13 +92,10 @@ function App(props) {
 
   return (
     <Switch>
-      <Route path={"/present"}>
+      {/* <Route path={"/present"}>
         <Presentation />
-      </Route>
-      <Route path="/confirm">
-        <Confirm></Confirm>
-      </Route>
-      <Route path={"/form"}>
+      </Route> */}
+      <Route path={"/apply"}>
         <Form {...{ stateManager, flash, setFlash, formSpec, onSubmit }}></Form>
       </Route>
       <Route exact path={"/"}>

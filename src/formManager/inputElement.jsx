@@ -1,5 +1,18 @@
 import React from "react";
 
+export const InputWrapper = ({ children, styles = {}, copy, id }) => {
+  const divClass = styles.container || "db mt3 ml3 ";
+  const labelClass = styles.label || "db mb1 avenir gray fw7 measure";
+  const textAreaLength = "measure h6";
+
+  return (
+    <div className={divClass} key={id}>
+      <label className={labelClass}>{copy}</label>
+      {children}
+    </div>
+  );
+};
+
 const parse = node => {
   const { id, copy, type, parent } = node;
   const ret = type.includes(",")
@@ -21,13 +34,10 @@ const parse = node => {
 const Input_Element = ({ node, stateManager, styles = {} }) => {
   const { set } = stateManager(node, { value: " " });
   const { id, copy, type, parent, props } = parse(node);
-  !copy && console.warn("copy undefined, defaulting to id");
+  const divClass = styles.container || "db mt3 ml3 ";
 
   const inpClass = styles.input || "br2 ba pv2 ph3 black-50 b--gray glow";
-  const divClass = styles.container || "db mt3 ml3 ";
-  const labelClass = styles.label || "db mb1 avenir gray fw7 measure";
-  const textAreaLength = "measure h6";
-
+  !copy && console.warn("copy undefined, defaulting to id");
   const inputMapper = {
     text: props => {
       return <input type={type} name={id} {...props} />;
@@ -39,7 +49,7 @@ const Input_Element = ({ node, stateManager, styles = {} }) => {
           cols={72}
           rows={4}
           {...props}
-          className={[textAreaLength, className].join(" ")}
+          className={className}
         ></textarea>
       );
     },
@@ -70,16 +80,15 @@ const Input_Element = ({ node, stateManager, styles = {} }) => {
   const Input = inputMapper[type] || inputMapper.text;
 
   return (
-    <div className={divClass} key={id}>
-      <label className={labelClass}>{copy}</label>
+    <InputWrapper {...node}>
       {Input({
-        className: inpClass,
         ...props,
+        className: inpClass,
         onChange: e => {
           set(e.target.value);
         }
       })}
-    </div>
+    </InputWrapper>
   );
 };
 export const InputElement = Input_Element;
