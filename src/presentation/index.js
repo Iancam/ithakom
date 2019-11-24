@@ -66,7 +66,7 @@ const HumanSlide = props => {
   );
 };
 
-export default Presentation = () => {
+export default () => {
   const [err, setErr] = useState();
   const humans =
     useServer("http://localhost:3000/api/guppies.ts", setErr) || undefined;

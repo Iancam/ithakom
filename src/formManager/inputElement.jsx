@@ -4,6 +4,7 @@ export const InputWrapper = ({ children, styles = {}, copy, id }) => {
   const divClass = styles.container || "db mt3 ml3 ";
   const labelClass = styles.label || "db mb1 avenir gray fw7 measure";
   const textAreaLength = "measure h6";
+  console.log(id);
 
   return (
     <div className={divClass} key={id}>

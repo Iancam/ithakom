@@ -38,7 +38,9 @@ const Form = ({ flash, setFlash, formSpec, onSubmit, stateManager }) => {
         </h1>
         <form>
           {formSpec &&
-            formSpec.map(node => InputElement({ node, stateManager }))}
+            formSpec.map(node =>
+              InputElement({ key: node.id, node, stateManager })
+            )}
         </form>
 
         <button
