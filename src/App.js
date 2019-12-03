@@ -80,9 +80,9 @@ function App(props) {
 
   return (
     <Switch>
-      {/* <Route path={"/present"}>
+      <Route path={"/present"}>
         <Presentation />
-      </Route> */}
+      </Route>
       <Route path="/confirm">
         <Confirm></Confirm>
       </Route>
