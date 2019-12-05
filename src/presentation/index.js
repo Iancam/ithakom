@@ -2,9 +2,6 @@
 import React, { useState } from "react";
 import { Deck, Slide, Heading } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
-import { useHumansData } from "./useHumansData";
-import { useCSV } from "../data/useCSV";
-import { keyBy } from "../utils";
 import { useServer } from "../data/useServer";
 const theme = createTheme(
   {
@@ -36,17 +33,27 @@ const HumanSlide = props => {
   if (typeof name !== "string") {
     return null;
   }
-  const ignored_answers = ["name", "date_submitted", "pic"];
+  const ignored_answers = [
+    "_id",
+    "name",
+    "phone",
+    "email",
+    "date_submitted",
+    "pic",
+    "sublet",
+    "deposit",
+    "smoking"
+  ];
   return (
     <Slide transition={["zoom"]} bgColor="primary" {...props}>
       <h1 className="mb4 f1">{name}</h1>
       <div className="">
-        <div className="fl">
+        {/* <div className="fl">
           <img
             src={pic ? pic : "/x"}
             alt={`${name.split(" ")[0]}'s face is missing`}
           />
-        </div>
+        </div> */}
         <div className="ml6 fr w-40 vh-75 overflow-scroll pr4 pb4 mb6">
           {Object.entries(props.human)
             .filter(([key]) => !ignored_answers.includes(key))
@@ -54,7 +61,7 @@ const HumanSlide = props => {
               typeof value === "object" && console.log(recRender(value));
 
               return (
-                <div className="db f6" key={i}>
+                <div className="db f3" key={i}>
                   <span className="red">{key}:</span>
                   {recRender(value)}
                 </div>
@@ -77,7 +84,7 @@ export default () => {
 
   const loadingSlide = (
     <Slide transition={["zoom"]} bgColor="red">
-      <Heading>loading, bro</Heading>
+      <Heading>Queueing Enya, please hold </Heading>
     </Slide>
   );
 
@@ -92,7 +99,6 @@ export default () => {
               return <HumanSlide key={i} human={human} />;
             })
         : loadingSlide}
-      {/* {slides || loadingSlide} */}
     </Deck>
   );
 };
