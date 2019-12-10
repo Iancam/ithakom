@@ -1,37 +1,45 @@
 import React, { useEffect, useState } from "react";
-import request from "superagent";
+import Request from "superagent";
 import { API_URI } from "./config";
 
 export const ImageInput = props => {
-  const [state, setState] = useState({ uploading: false, images: undefined });
+  const [state, setState] = useState({ uploading: false, image: undefined });
   const onChange = e => {
-    console.log(e);
-
     const files = Array.from(e.target.files);
+    console.log(files);
+
     setState({ uploading: true });
     const formData = new FormData();
     files.forEach((file, i) => {
       formData.append(i, file);
     });
-    request
-      .post(`${API_URI}/image.ts`)
+    Request.post(`${API_URI}/image.ts`)
       .send(formData)
-      .then(res => res.body())
-      .then(images => {
+      .then(res => {
+        console.log(res);
+        return res.body;
+      })
+      .then(image => {
+        console.log("twasBrillig");
+        console.log(image);
+
         setState({
           uploading: false,
-          images
+          image
         });
-      });
+      })
+      .catch(err => console.log(err));
   };
 
   return (
-    <input
-      type="file"
-      name="avatar"
-      onChange={e => {
-        console.log(e.target.files);
-      }}
-    />
+    <>
+      {state.image && (
+        <img
+          src={state.image}
+          alt="again, the wriggly wrong thing went forth a wooined it all"
+        />
+      )}
+      <input {...props} type="file" name="avatar" onChange={onChange} />
+    </>
   );
 };
