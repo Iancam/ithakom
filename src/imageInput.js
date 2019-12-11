@@ -3,7 +3,18 @@ import Request from "superagent";
 import { API_URI } from "./config";
 
 export const ImageInput = props => {
-  const [state, setState] = useState({ uploading: false, image: undefined });
+  const [state, setState] = useState({
+    uploading: false,
+    image: undefined,
+    postUrl: undefined
+  });
+  Request.get(`${API_URI}/image.ts`)
+    .then(res => res.body)
+    .then(postUrl => {
+      console.log(postUrl);
+
+      return setState({ ...state, postUrl });
+    });
   const onChange = e => {
     const files = Array.from(e.target.files);
     console.log(files);
