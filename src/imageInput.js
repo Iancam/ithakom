@@ -8,13 +8,16 @@ export const ImageInput = props => {
     image: undefined,
     postUrl: undefined
   });
-  Request.get(`${API_URI}/image.ts`)
-    .then(res => res.body)
-    .then(postUrl => {
-      console.log(postUrl);
-
-      return setState({ ...state, postUrl });
-    });
+  // useEffect(() => {
+  //   state.postUrl ||
+  //     Request.get(`${API_URI}/image.ts`)
+  //       .then(res => res.body)
+  //       .then(postUrl => {
+  //         console.log(postUrl);
+  //         return setState({ ...state, postUrl });
+  //       })
+  //       .catch(err => setState({ state, postUrl: err }));
+  // }, [state.postUrl]);
   const onChange = e => {
     const files = Array.from(e.target.files);
     console.log(files);
@@ -24,21 +27,29 @@ export const ImageInput = props => {
     files.forEach((file, i) => {
       formData.append(i, file);
     });
-    Request.post(`${API_URI}/image.ts`)
-      .send(formData)
-      .then(res => {
-        console.log(res);
-        return res.body;
+    Request.get(`${API_URI}/image.ts`)
+      .type(files[0].name.split(".").pop())
+      .then(response => response.body)
+      .then(awsSignedPost => {
+        console.log(awsSignedPost);
+        Request.post(awsSignedPost.url)
+          .set(awsSignedPost.fields)
+          .then(re => console.log(re));
       })
-      .then(image => {
-        console.log("twasBrillig");
-        console.log(image);
+      // .send(formData)
+      // .then(res => {
+      //   console.log(res);
+      //   return res.body;
+      // })
+      // .then(image => {
+      //   console.log("twasBrillig");
+      //   console.log(image);
 
-        setState({
-          uploading: false,
-          image
-        });
-      })
+      //   setState({
+      //     uploading: false,
+      //     image
+      //   });
+      // })
       .catch(err => console.log(err));
   };
 

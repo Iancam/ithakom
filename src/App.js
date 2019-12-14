@@ -13,7 +13,7 @@ import { useCSV } from "./data/useCSV";
 import { Form } from "./form";
 import { usePathState } from "./formManager/stateManager";
 import urljoin from "url-join";
-import { Cancel } from "./cancelIcon";
+
 import { Confirm } from "./confirm";
 import { API_URI } from "./config";
 const questions = require("./data/questions.dsv");
