@@ -36,8 +36,8 @@ const HumanSlide = props => {
   const ignored_answers = [
     "_id",
     "name",
-    "phone",
-    "email",
+    // "phone",
+    // "email",
     "date_submitted",
     "pic",
     "sublet",
