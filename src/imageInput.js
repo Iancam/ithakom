@@ -21,20 +21,29 @@ export const ImageInput = props => {
   const onChange = e => {
     const files = Array.from(e.target.files);
     console.log(files);
-
     setState({ uploading: true });
-    const formData = new FormData();
-    files.forEach((file, i) => {
-      formData.append(i, file);
-    });
     Request.get(`${API_URI}/image.ts`)
       .type(files[0].name.split(".").pop())
       .then(response => response.body)
       .then(awsSignedPost => {
         console.log(awsSignedPost);
-        Request.post(awsSignedPost.url)
-          .set(awsSignedPost.fields)
-          .then(re => console.log(re));
+        let req = Request.post(awsSignedPost.url);
+        req.set({
+          ...awsSignedPost.fields,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET"
+        });
+        for (const key in awsSignedPost.fields) {
+          console.log(key);
+
+          req.field(key, awsSignedPost.fields[key]);
+        }
+        req
+          .attach("file", files[0], awsSignedPost.contentType)
+          .end((err, res) => {
+            console.log(res.text);
+            console.error(err);
+          });
       })
       // .send(formData)
       // .then(res => {
