@@ -1,0 +1,4 @@
+id::copy::type
+name::who dis?::@chooseFrom residents
+dates::when you gonna be gon' away?::dateRange
+room::which your room, friend::@chooseFrom rooms

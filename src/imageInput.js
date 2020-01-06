@@ -1,29 +1,47 @@
 import React, { useEffect, useState } from "react";
-import request from "superagent";
+import Request from "superagent";
+import { API_URI } from "./config";
 
 export const ImageInput = props => {
+  const { set } = props;
+  const [state, setState] = useState({
+    uploading: false,
+    image: undefined,
+    postUrl: undefined
+  });
   const onChange = e => {
     const files = Array.from(e.target.files);
     setState({ uploading: true });
-
-    const formData = new FormData();
-
-    files.forEach((file, i) => {
-      formData.append(i, file);
-    });
-
-    fetch(`${API_URL}/image-upload`, {
-      method: "POST",
-      body: formData
-    })
-      .then(res => res.json())
-      .then(images => {
-        setState({
-          uploading: false,
-          images
+    Request.post(`${API_URI}/image.ts`)
+      .type(files[0].name.split(".").pop())
+      .then(response => response.body)
+      .then(awsSignedPost => {
+        let req = Request.post(awsSignedPost.url);
+        req.set({
+          ...awsSignedPost.fields,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET"
         });
-      });
+        for (const key in awsSignedPost.fields) {
+          req.field(key, awsSignedPost.fields[key]);
+        }
+        req.attach("file", files[0], awsSignedPost.contentType).then(() => {
+          set(awsSignedPost.key);
+          setState({ uploading: false });
+        });
+      })
+      .catch(err => console.log(err));
   };
 
-  return;
+  return (
+    <>
+      {state.image && (
+        <img
+          src={state.image}
+          alt="again, the wriggly wrong thing went forth a wooined it all"
+        />
+      )}
+      <input {...props} type="file" name="avatar" onChange={onChange} />
+    </>
+  );
 };

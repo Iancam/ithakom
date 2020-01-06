@@ -1,4 +1,5 @@
 import React from "react";
+import { ImageInput } from "../imageInput";
 
 export const InputWrapper = ({ children, styles = {}, copy, id }) => {
   const divClass = styles.container || "db mt3 ml3 ";
@@ -76,7 +77,8 @@ const Input_Element = ({ node, stateManager, styles = {} }) => {
           ))}
         </select>
       );
-    }
+    },
+    image: ImageInput
   };
   const Input = inputMapper[type] || inputMapper.text;
 
@@ -85,6 +87,7 @@ const Input_Element = ({ node, stateManager, styles = {} }) => {
       {Input({
         ...props,
         className: inpClass,
+        set,
         onChange: e => {
           set(e.target.value);
         }

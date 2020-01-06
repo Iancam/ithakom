@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Deck, Slide, Heading } from "spectacle";
 import createTheme from "spectacle/lib/themes/default";
 import { useServer } from "../data/useServer";
+import { API_URI } from "../config";
+import join from "url-join";
 const theme = createTheme(
   {
     primary: "white",
@@ -28,18 +30,16 @@ const recRender = obj => {
 };
 
 const HumanSlide = props => {
-  const { pic, name } = props.human;
+  const { picture, name } = props.human;
 
   if (typeof name !== "string") {
     return null;
   }
   const ignored_answers = [
-    "_id",
     "name",
-    // "phone",
-    // "email",
     "date_submitted",
-    "pic",
+    "_id",
+    "date_submitted",
     "sublet",
     "deposit",
     "smoking"
@@ -48,12 +48,12 @@ const HumanSlide = props => {
     <Slide transition={["zoom"]} bgColor="primary" {...props}>
       <h1 className="mb4 f1">{name}</h1>
       <div className="">
-        {/* <div className="fl">
+        <div className="fl">
           <img
-            src={pic ? pic : "/x"}
+            src={join(API_URI, "images", picture ? picture : "/x")}
             alt={`${name.split(" ")[0]}'s face is missing`}
           />
-        </div> */}
+        </div>
         <div className="ml6 fr w-40 vh-75 overflow-scroll pr4 pb4 mb6">
           {Object.entries(props.human)
             .filter(([key]) => !ignored_answers.includes(key))
@@ -77,11 +77,6 @@ export default () => {
   const [err, setErr] = useState();
   const humans =
     useServer("http://localhost:3000/api/guppies.ts", setErr) || undefined;
-  // ||
-  console.log(humans);
-
-  // useHumansData();
-
   const loadingSlide = (
     <Slide transition={["zoom"]} bgColor="red">
       <Heading>Queueing Enya, please hold </Heading>
