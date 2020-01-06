@@ -86,6 +86,7 @@ const Input_Element = ({ node, stateManager, styles = {} }) => {
       {Input({
         ...props,
         className: inpClass,
+        set,
         onChange: e => {
           set(e.target.value);
         }

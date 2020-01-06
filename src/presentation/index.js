@@ -6,6 +6,8 @@ import { useHumansData } from "./useHumansData";
 import { useCSV } from "../data/useCSV";
 import { keyBy } from "../utils";
 import { useServer } from "../data/useServer";
+import { API_URI } from "../config";
+import join from "url-join";
 const theme = createTheme(
   {
     primary: "white",
@@ -31,19 +33,19 @@ const recRender = obj => {
 };
 
 const HumanSlide = props => {
-  const { pic, name } = props.human;
+  const { picture, name } = props.human;
 
   if (typeof name !== "string") {
     return null;
   }
-  const ignored_answers = ["name", "date_submitted", "pic"];
+  const ignored_answers = ["name", "date_submitted"];
   return (
     <Slide transition={["zoom"]} bgColor="primary" {...props}>
       <h1 className="mb4 f1">{name}</h1>
       <div className="">
         <div className="fl">
           <img
-            src={pic ? pic : "/x"}
+            src={join(API_URI, "images", picture ? picture : "/x")}
             alt={`${name.split(" ")[0]}'s face is missing`}
           />
         </div>

@@ -3,26 +3,16 @@ import Request from "superagent";
 import { API_URI } from "./config";
 
 export const ImageInput = props => {
+  const { set } = props;
   const [state, setState] = useState({
     uploading: false,
     image: undefined,
     postUrl: undefined
   });
-  // useEffect(() => {
-  //   state.postUrl ||
-  //     Request.get(`${API_URI}/image.ts`)
-  //       .then(res => res.body)
-  //       .then(postUrl => {
-  //         console.log(postUrl);
-  //         return setState({ ...state, postUrl });
-  //       })
-  //       .catch(err => setState({ state, postUrl: err }));
-  // }, [state.postUrl]);
   const onChange = e => {
     const files = Array.from(e.target.files);
-    console.log(files);
     setState({ uploading: true });
-    Request.get(`${API_URI}/image.ts`)
+    Request.post(`${API_URI}/image.ts`)
       .type(files[0].name.split(".").pop())
       .then(response => response.body)
       .then(awsSignedPost => {
@@ -34,31 +24,13 @@ export const ImageInput = props => {
           "Access-Control-Allow-Methods": "GET"
         });
         for (const key in awsSignedPost.fields) {
-          console.log(key);
-
           req.field(key, awsSignedPost.fields[key]);
         }
-        req
-          .attach("file", files[0], awsSignedPost.contentType)
-          .end((err, res) => {
-            console.log(res.text);
-            console.error(err);
-          });
+        req.attach("file", files[0], awsSignedPost.contentType).then(() => {
+          set(awsSignedPost.key);
+          setState({ uploading: false });
+        });
       })
-      // .send(formData)
-      // .then(res => {
-      //   console.log(res);
-      //   return res.body;
-      // })
-      // .then(image => {
-      //   console.log("twasBrillig");
-      //   console.log(image);
-
-      //   setState({
-      //     uploading: false,
-      //     image
-      //   });
-      // })
       .catch(err => console.log(err));
   };
 
