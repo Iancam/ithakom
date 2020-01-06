@@ -31,6 +31,7 @@ const recRender = obj => {
 
 const HumanSlide = props => {
   const { picture, name } = props.human;
+  console.log(props.human);
 
   if (typeof name !== "string") {
     return null;

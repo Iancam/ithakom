@@ -4,6 +4,8 @@ import { API_URI } from "./config";
 
 export const ImageInput = props => {
   const { set } = props;
+  console.log(set);
+
   const [state, setState] = useState({
     uploading: false,
     image: undefined,
@@ -17,6 +19,8 @@ export const ImageInput = props => {
       .then(response => response.body)
       .then(awsSignedPost => {
         let req = Request.post(awsSignedPost.url);
+        console.log(awsSignedPost.fields);
+
         req.set({
           ...awsSignedPost.fields,
           "Access-Control-Allow-Origin": "*",
@@ -26,7 +30,7 @@ export const ImageInput = props => {
           req.field(key, awsSignedPost.fields[key]);
         }
         req.attach("file", files[0], awsSignedPost.contentType).then(() => {
-          set(awsSignedPost.key);
+          set(awsSignedPost.fields.key);
           setState({ uploading: false });
         });
       })

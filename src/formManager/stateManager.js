@@ -41,6 +41,8 @@ export function usePathState(
 
   const setValue = id => value => {
     const old = form[id];
+    console.log(id, value);
+
     return setForm({ ...form, [id]: { ...old, value } });
   };
   const stateManager = node => {
